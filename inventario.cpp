@@ -1,116 +1,165 @@
-#include <iostream>
+#include <iostream>  //Carlos Roberto Rivera 20142005529
 #include <string>
+
 using namespace std;
 
-string productos[5][3]= {
-{"001","Iphone X", "0"},
-{"002","Laptop Dell","5"},
-{"003","Monitor Samsung","2"},
-{"004","Mouse","100"},
-{"005","Headset","25"},
+string productos[5][3] = {
+    { "001", "iPhone X", "0" },
+    { "002", "Laptop Dell", "5" },
+    { "003", "Monitor Samsung", "2" },
+    { "004", "Mouse", "100" },
+    { "005", "HeadSet", "25" }
 };
 
-void listarproductos(){
+void listarProductos() {
     system("cls");
-      cout<<endl;
-        cout<<"Listado de Producto"<<endl;
-        cout<<"********************"<<endl;
-        cout<<"codigo, descripcion y existencia"<<endl;
-        cout<<"********************"<<endl;
-        for (int i=0;i<5;i++)
-        {
-            cout<< productos[i][0]<< " ! "<< productos[i][1]<<" ! "<<productos[i][2]<<endl;
-        }
+    cout << endl;
+    cout << "Listado de Productos" << endl;
+    cout << "********************" << endl;
+    cout << "Codigo, Descripcion y Existencia" << endl;
+
+    for (int i = 0; i < 5; i++)
+    {
+        cout << productos[i][0] << " | " << productos[i][1] << " | " << productos[i][2] << endl;
+    }
 }
 
-void movimientoinventario(string codigo, int cantidad, string tipomovimiento){
-    for (int i =0;i<5;i++)
+void movimientoInventario(string codigo, int cantidad, string tipoMovimiento) {
+    for (int i = 0; i < 5; i++)
     {
-        if(productos[i][0] == codigo){
-            if(tipomovimiento == "+"){
-            productos[i][2] = to_string (stoi(productos[i][2]) + cantidad);
-            } else{
-            productos[i][2] = to_string (stoi(productos[i][2]) - cantidad);
+        if (productos[i][0] == codigo) {
+            if (tipoMovimiento == "+") {
+                productos[i][2] = to_string(stoi(productos[i][2]) + cantidad);
+            } else {
+                productos[i][2] = to_string(stoi(productos[i][2]) - cantidad);
             }
         }
     }
 }
 
-void ingresodeinventario(){
+void ingresoDeInventario() {
     string codigo = "";
     int cantidad = 0;
+
     system("cls");
-    cout<<endl;
-    cout<<"Ingreso de producto al inventario"<<endl;
-    cout<<"*********************************"<<endl;
-    cout<<"Ingrese el codigo del producto"<<endl;
-    cin>>codigo;
-    cout<<endl;
-    cout<<"Ingrese la cantidad del producto"<<endl;
-    cin>>cantidad;
-    cout<<endl;
-  
-    movimientoinventario(codigo, cantidad, "+");
+    cout << endl;
+    cout << "Ingreso de Productos al Inventario" << endl;
+    cout << "**********************************" << endl;
+    cout << "Ingrese el codigo del producto: ";
+    cin >> codigo;
+    cout << endl;
+    cout << "Ingrese la cantidad del producto: ";
+    cin >> cantidad;
+    cout << endl;
+
+    movimientoInventario(codigo, cantidad, "+");
 }
 
-void salidadeinventario(){
+void ajustepositivoDeInventario() {
     string codigo = "";
     int cantidad = 0;
+
     system("cls");
-    cout<<endl;
-    cout<<"salida de producto al inventario"<<endl;
-    cout<<"*********************************"<<endl;
-    cout<<"Ingrese el codigo del producto"<<endl;
-    cin>>codigo;
-    cout<<endl;
-    cout<<"Ingrese la cantidad del producto"<<endl;
-    cin>>cantidad;
-    cout<<endl;
-  
-    movimientoinventario(codigo, cantidad, "-");
+    cout << endl;
+    cout << "Ajuste positivo de Inventario" << endl;
+    cout << "******************************" << endl;
+    cout << "Ingrese el codigo del producto: ";
+    cin >> codigo;
+    cout << endl;
+    cout << "Ingrese la cantidad del producto: ";
+    cin >> cantidad;
+    cout << endl;
+
+    movimientoInventario(codigo, cantidad, "+");
 }
-int main (int argc , char const *argv [])
+
+void ajustenegativoDeInventario() {
+    string codigo = "";
+    int cantidad = 0;
+
+    system("cls");
+    cout << endl;
+    cout << "Ajuste negativo de Inventario" << endl;
+    cout << "******************************" << endl;
+    cout << "Ingrese el codigo del producto: ";
+    cin >> codigo;
+    cout << endl;
+    cout << "Ingrese la cantidad del producto: ";
+    cin >> cantidad;
+    cout << endl;
+
+    movimientoInventario(codigo, cantidad, "-");
+}
+
+void salidaDeInventario() {
+    string codigo = "";
+    int cantidad = 0;
+
+    system("cls");
+    cout << endl;
+    cout << "Salida de Productos del Inventario" << endl;
+    cout << "**********************************" << endl;
+    cout << "Ingrese el codigo del producto: ";
+    cin >> codigo;
+    cout << endl;
+    cout << "Ingrese la cantidad del producto: ";
+    cin >> cantidad;
+    cout << endl;
+
+    movimientoInventario(codigo, cantidad, "-");
+}
+
+int main(int argc, char const *argv[])
 {
- 
-    int opcion=0;
+    int opcion = 0;
 
-    while(true)
-    {
-    system("cls");
-    cout<<endl;
-    cout<<"*********************"<<endl;
-    cout<<"Sistema de inventario"<<endl;
-    cout<<endl;
-    cout<<"1 - Productos"<<endl;
-    cout<<"2 - Ingreso de inventario"<<endl;
-    cout<<"3 - Salida de inventario"<<endl;
-    cout<<"0 - Salir"<<endl;
-    cout<<"Ingrese una opcion del menu:"<<endl;
-    cout<<endl;
-    cin>>opcion;
+    while(true) {
+        system("cls");
 
-    switch (opcion)
-    {
-        case 1:
-        listarproductos();
-        break;
-        
+        cout << "Sistema de Inventario"; 
+        cout << endl;
+        cout << "*********************";
+        cout << endl;
+        cout << endl;
+        cout << "1 - Productos" << endl;
+        cout << "2 - Ingreso de Inventario" << endl;
+        cout << "3 - Salida de Inventario" << endl;
+        cout << "4 - Ajuste positivo de Inventario" << endl;
+        cout << "5 - Ajuste negativo de Inventario" << endl;
+        cout << "0 - Salir" << endl;
+        cout << "Ingrese una opcion del menu: ";
+        cin >> opcion;
+
+        switch (opcion)
+        {
+        case 1: 
+            listarProductos();            
+            break;
         case 2:
-        ingresodeinventario();
-        break;
-
+            ingresoDeInventario();
+            break;
         case 3:
-        salidadeinventario();
-        break;
-
+            salidaDeInventario();
+            break;
+        case 4:
+            ajustepositivoDeInventario();
+            break;
+        case 5:
+            ajustenegativoDeInventario();
+            break;
         default:
-        break;
-     }
-     system("pause");
+            break;
+        }
 
-     if (opcion == 0 ) {
-         break;
-     }
-     }
-  
+        system("pause");
+        cout << endl;
+
+        if (opcion == 0) {
+            break;
+        }
+    }
+
+ 
+
+    return 0;
 }
